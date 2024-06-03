@@ -1,27 +1,24 @@
 import React, { useRef, useEffect } from 'react';
 
-// Define and export the InputWithLabel component
-const InputWithLabel = (props) => {
-    const inputRef = useRef(null); // Create a ref object
 
-    // Define useEffect without a dependency list
+const InputWithLabel = ({ children, todoTitle, handleTitleChange }) => {
+    const inputRef = useRef(null); 
+
     useEffect(() => {
-        // Code to run after component mounts
-        console.log('Component mounted or updated');
         if (inputRef.current) {
-            inputRef.current.focus(); // Call focus on the input element
+            inputRef.current.focus();
         }
-    });
+    }, []);
 
     return (
         <>
-            <label htmlFor="todoTitle">{props.children}</label>
+            <label htmlFor="todoTitle">{children}</label>
             <input 
                 type="text" 
                 name="title" 
-                value={props.todoTitle} 
-                onChange={props.handleTitleChange}
-                ref={inputRef} // Attach the ref to the input element
+                value={todoTitle} 
+                onChange={handleTitleChange}
+                ref={inputRef}
             />
         </>
     );
